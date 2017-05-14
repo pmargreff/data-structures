@@ -5,6 +5,7 @@ import (
   "github.com/stretchr/testify/assert"
 )
 
+// test root creation and default values
 func TestRoot(t *testing.T) {
   assert := assert.New(t);
 
@@ -20,7 +21,31 @@ func TestRoot(t *testing.T) {
   }
 }
 
-func TestInsert(t *testing.T) {
+// test insertion for fill only the first level (root) of tree
+func TestInsertionOneLevel(t *testing.T) {
+  assert := assert.New(t);
+
+  var tree *Node = create_new_tree();
+
+  for index := 0; index < KEY_SIZE; index++ {
+    tree.insert(index)
+  }
+
+  for index := 0; index < KEY_SIZE; index++ {
+    assert.Equal(tree.key[index], index, "The key {index} should be {index}")
+  }
+}
+
+// test insertion for more than the first level of tree
+func TestInsertionMoreThanKeysSize(t *testing.T) {
+}
+
+// try to insert only in the left to have sure the tree stay balanced
+func TestInsertionLeftOnly(t *testing.T) {
+}
+
+// try to insert only in the right to have sure the tree stay balanced
+func TestInsertionRightOnly(t *testing.T) {
 }
 
 func TestSearch(t *testing.T) {
