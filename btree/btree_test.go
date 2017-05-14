@@ -36,6 +36,22 @@ func TestIfIsLeaf(t *testing.T) {
   assert.Equal(tree.child[0].is_leaf(), true, "The sub tree should be a leaf")
 }
 
+func TestIfNodeHasSpace(t *testing.T) {
+  assert := assert.New(t);
+
+  var node *Node = create_new_node();
+
+  assert.Equal(node.has_space(), true, "The node should have free spaces");
+
+  for index := 0; index < KEY_SIZE; index++ {
+    node.key[index] = int64(index);
+    node.total_keys++;
+  }
+
+  assert.Equal(node.has_space(), false, "The node shouldn't have free spaces");
+
+}
+
 // test insertion for fill only the first level (root) of tree
 func TestInsertionOneLevel(t *testing.T) {
   assert := assert.New(t);
