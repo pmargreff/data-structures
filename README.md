@@ -1,1 +1,1 @@
-Simple data strutures implemented with GO lang
+Simple data structures implemented with GO
