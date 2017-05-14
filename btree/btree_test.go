@@ -9,7 +9,7 @@ import (
 func TestRoot(t *testing.T) {
   assert := assert.New(t);
 
-  var root *Node = create_new_tree();
+  var root *Node = create_new_node();
   assert.Equal(root.total_keys, int8(0), "The total keys filled should be 0")
 
   for index := 0; index < CHILD_SIZE; index++ {
@@ -22,10 +22,25 @@ func TestRoot(t *testing.T) {
 }
 
 // test insertion for fill only the first level (root) of tree
+func TestIfIsLeaf(t *testing.T) {
+  assert := assert.New(t);
+
+  var tree *Node = create_new_node();
+  var sub_tree *Node = create_new_node();
+
+  assert.Equal(tree.is_leaf(), true, "The root should be a leaf")
+
+  tree.child[0] = sub_tree
+
+  assert.Equal(tree.is_leaf(), false, "The root shouldn't be a leaf")
+  assert.Equal(tree.child[0].is_leaf(), true, "The sub tree should be a leaf")
+}
+
+// test insertion for fill only the first level (root) of tree
 func TestInsertionOneLevel(t *testing.T) {
   assert := assert.New(t);
 
-  var tree *Node = create_new_tree();
+  var tree *Node = create_new_node();
 
   for index := 0; index < KEY_SIZE; index++ {
     tree.insert(index)
@@ -36,7 +51,6 @@ func TestInsertionOneLevel(t *testing.T) {
   }
 }
 
-// test insertion for more than the first level of tree
 func TestInsertionMoreThanKeysSize(t *testing.T) {
 }
 
